@@ -1,72 +1,114 @@
-# Projeto de Automação com Cypress DESAFIO 2
+# 📌 Projeto SQA - Desafio 1 e Desafio 2 | Engenharia de Software - UNIFAA
 
-Este projeto contém testes automatizados para as páginas de Login e Produtos, utilizando o Cypress.
+**Aluno:** Lorenzo
+**Matéria:** SQA - Qualidade de Software
+**Professor:** Serafim
+**Ano:** 2025
 
-## Pré-requisitos
+---
 
-- Node.js (versão 16 ou superior)
-- npm (gerenciador de pacotes do Node.js)
+## 📚 Sobre o Projeto
 
-## Configuração do Projeto
+Este repositório contém os dois desafios desenvolvidos durante a disciplina de SQA (Software Quality Assurance), com foco em automação de testes e boas práticas de validação de software.
 
-1. Clone este repositório (ou crie a estrutura de pastas manualmente):
-   ```bash
-   mkdir cypress-automation
-   cd cypress-automation
-   ```
+---
 
-2. Instale as dependências:
-   ```bash
-   npm install
-   ```
+## ✅ Desafio 1 - Sistema de Login (Frontend HTML + CSS + JS)
 
-3. Certifique-se de que os arquivos `login.html` e `produtos.html` estejam sendo servidos em `http://127.0.0.1:5500/`.
-   Você pode usar uma extensão de servidor local para VS Code, como o "Live Server", ou qualquer outro servidor HTTP simples.
+### 📋 Descrição:
 
-## Executando os Testes
+O primeiro desafio foi o desenvolvimento de uma **tela de Login simples**, utilizando **HTML**, **CSS** e **JavaScript puro**, simulando um fluxo de autenticação básico.
 
-Para executar os testes em modo interativo (abrir a interface do Cypress):
+### 🌟 Funcionalidades implementadas:
+
+* Campos de **E-mail** e **Senha**.
+* Validação de **login inválido** (usuário ou senha errada).
+* Mensagem de erro em caso de falha.
+* Redirecionamento para a página de produtos após login bem-sucedido.
+
+### 🔧 Estrutura da pasta:
+
+```
+desafio1-login/
+├── index.html
+├── login.html
+├── style.css
+└── script.js
+```
+
+---
+
+## ✅ Desafio 2 - Automação de Testes E2E com Cypress
+
+### 📋 Descrição:
+
+No segundo desafio, a proposta foi automatizar os testes de **ponta a ponta (E2E)** para as telas criadas no Desafio 1.
+Utilizei o framework **Cypress** para validar todas as regras de negócio da tela de **Login** e da tela de **Cadastro de Produtos**.
+
+### 🌟 Funcionalidades testadas:
+
+#### ✔️ Testes da Tela de Login:
+
+* Login com **email inválido**
+* Login com **senha inválida**
+* Teste de **campos vazios**
+* **Exibição e fechamento de mensagens de erro**
+* Garantir que o sistema **não navegue após login inválido**
+* Limpeza de campos após erro
+* Login **bem-sucedido com redirecionamento**
+
+#### ✔️ Testes da Tela de Produtos:
+
+* **Abertura do modal** de cadastro
+* **Fechamento do modal**
+* Validação de **campos obrigatórios**
+* Cadastro de **novo produto**
+* Exibição de **múltiplos produtos**
+* **Validação de inputs numéricos** (quantidade e valor)
+* Verificação se os campos são limpos após cada cadastro
+* Teste de **persistência de dados ao reabrir o modal**
+* **Botão voltar** da navbar
+
+---
+
+## 👷️ Observações:
+
+* Durante os testes, alguns cenários apresentaram **falhas na automação**, principalmente envolvendo **visibilidade de modal** e **navegação entre telas**.
+  Porém, ao testar manualmente, o comportamento estava correto. Isso reforça a importância de testar tanto manual quanto automatizado.
+
+* O Cypress foi executado no ambiente local através da URL:
+  `http://127.0.0.1:5500/`
+
+---
+
+## ✅ Como Rodar os Testes Cypress:
+
+1. Navegue até a pasta:
+
+```bash
+cd desafio2-cypress
+```
+
+2. Instale as dependências (se ainda não tiver feito):
+
+```bash
+npm install
+```
+
+3. Rode o Cypress:
 
 ```bash
 npx cypress open
 ```
 
-Para executar os testes em modo headless (via linha de comando):
+4. Selecione os testes E2E na interface do Cypress.
 
-```bash
-npx cypress run
-```
+---
 
-## Casos de Teste
+## 👨‍💻 Contato:
 
-### Login Page (`login.html`)
+* Nome: Lorenzo
+* Curso: Engenharia de Software - UNIFAA
+* Github: [github.com/Kuasne](https://github.com/Kuasne)
 
-Foram criados 10 casos de teste para a página de login:
-
-1.  **Login bem-sucedido com credenciais válidas:** Verifica se o usuário consegue fazer login com e-mail (`admin@admin.com`) e senha (`admin@123`) corretos e é redirecionado para a página de produtos.
-2.  **Mensagem de erro para e-mail inválido:** Verifica se uma mensagem de erro é exibida ao tentar fazer login com um e-mail não registrado.
-3.  **Mensagem de erro para senha inválida:** Verifica se uma mensagem de erro é exibida ao tentar fazer login com uma senha incorreta.
-4.  **Mensagem de erro para e-mail vazio:** Verifica se uma mensagem de erro é exibida ao tentar fazer login com o campo de e-mail vazio.
-5.  **Mensagem de erro para senha vazia:** Verifica se uma mensagem de erro é exibida ao tentar fazer login com o campo de senha vazio.
-6.  **Mensagem de erro para ambos os campos vazios:** Verifica se uma mensagem de erro é exibida ao tentar fazer login com ambos os campos (e-mail e senha) vazios.
-7.  **Fechar mensagem de erro:** Verifica se a mensagem de erro desaparece ao clicar no botão de fechar.
-8.  **Não navegar após falha no login:** Verifica se a página não é redirecionada após uma tentativa de login falha.
-9.  **Foco no campo de e-mail ao carregar a página:** Verifica se o campo de e-mail está focado automaticamente ao carregar a página de login.
-10. **Limpar campos após tentativa de login falha:** Verifica se os campos de e-mail e senha são limpos após uma tentativa de login falha.
-
-### Products Page (`produtos.html`)
-
-Foram criados 10 casos de teste para a página de produtos:
-
-1.  **Exibir modal de criação de produto:** Verifica se o modal de criação de produto é exibido ao clicar no botão "Criar".
-2.  **Fechar modal de criação de produto:** Verifica se o modal de criação de produto é fechado ao clicar no botão "Sair".
-3.  **Mensagem de erro ao tentar salvar produto vazio:** Verifica se uma mensagem de erro é exibida ao tentar salvar um produto com campos vazios.
-4.  **Adicionar novo produto com dados válidos:** Verifica se um novo produto é adicionado com sucesso à tabela com dados válidos.
-5.  **Exibir múltiplos produtos na tabela:** Verifica se múltiplos produtos são exibidos corretamente na tabela após serem adicionados.
-6.  **Limpar campos do formulário após criação bem-sucedida:** Verifica se os campos do formulário são limpos após a criação bem-sucedida de um produto.
-7.  **Validar entrada numérica para o campo de quantidade:** Verifica se o campo de quantidade aceita apenas entradas numéricas.
-8.  **Validar entrada numérica para o campo de valor:** Verifica se o campo de valor aceita apenas entradas numéricas.
-9.  **Manter dados do produto ao fechar e reabrir o modal (se não salvo):** Verifica se os dados inseridos no formulário são mantidos ao fechar e reabrir o modal, caso o produto não tenha sido salvo.
-10. **Navegar de volta ao clicar em "Voltar":** Verifica se a página navega para a página anterior ou inicial ao clicar no botão "Voltar".
-
-
+---
